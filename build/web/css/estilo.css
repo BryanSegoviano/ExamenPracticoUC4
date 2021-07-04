@@ -1,0 +1,49 @@
+body{
+    font-family: Verdana;
+    color: black; 
+    font-weight: none;
+    font-size: 13px;    
+}
+fieldset {
+    border-radius: 7px;
+    border: 1px #dddddd solid;
+    padding: 10px;
+    width: 550px;
+    margin-top: 10px;
+}
+fieldset legend {
+    border: 1px #1a6f93 solid;    
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-radius: 3px;
+}
+label {
+    width: 140px;
+    padding-left: 20px;
+    margin: 5px;
+    float: left;
+    text-align: left;
+}
+input, textarea, select, b {
+    margin: 5px;
+    padding: 0px;
+    float: left;
+}
+b{
+    margin: 5px 0px;
+}
+br {
+    clear: left;
+}
+td, th{
+    border: 1px solid black;
+    padding: 5px;
+}
+th{
+    background-color: lightgray;
+}
+tfoot td:first-child{
+    text-align: right;
+}

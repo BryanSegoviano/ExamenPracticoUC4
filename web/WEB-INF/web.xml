@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>RegistrarProducto</servlet-name>
+        <servlet-class>control.RegistrarProducto</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TablaProductos</servlet-name>
+        <servlet-class>control.TablaProductos</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LlenarMarcas</servlet-name>
+        <servlet-class>control.LlenadoInformacion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CargarInformacion</servlet-name>
+        <servlet-class>control.CargarInformacion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegistrarProducto</servlet-name>
+        <url-pattern>/RegistrarProducto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TablaProductos</servlet-name>
+        <url-pattern>/TablaProductos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LlenarMarcas</servlet-name>
+        <url-pattern>/LlenarMarcas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CargarInformacion</servlet-name>
+        <url-pattern>/CargarInformacion</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>CargarInformacion</welcome-file>
+    </welcome-file-list>
+</web-app>
