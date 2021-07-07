@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.List"%>
 <%@page import="dominio.Marca"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -26,16 +27,12 @@
                 <b>$</b><input id="txtPrecio" type="number" name="txtPrecio" min='0' max='100000' size='6' step=".01" required><b>M.N.</b><br />
 
                 <label for="selMarca">Marca:</label>                            
-                <select id="selMarca" name="selMarca" required>
+                <select id="selMarca" name="selMarca" required> 
                     <optgroup label="= Seleccione una =">
-                        <%
-                            List<Marca> marcas = (List<Marca>) session.getAttribute("listaMarcasAux");
-                            for (int i = 0; i < marcas.size(); i++) {
-                                out.print("<option value=\"" + marcas.get(i).getNombre() + "\">" + marcas.get(i).getNombre() + "</option>");
-                            }
-                        %>
+                        <c:forEach var="marcas" items="${listaMarcasAux}">
+                            <option value="${marcas.getNombre()}">${marcas.getNombre()}</option>
+                        </c:forEach>
                 </select><br /> 
-
                 <label for='txaDesc'>Descripción:</label>
                 <textarea id='txaDesc' name='txaDesc' required></textarea><br /> 
                 <label>&nbsp;</label>

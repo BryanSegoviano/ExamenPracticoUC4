@@ -64,15 +64,16 @@ public class CargarInformacion extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         HttpSession session = request.getSession();
-        
+
         List<Marca> listaMarcas = this.fachada.buscarTodasMarca();
         session.setAttribute("listaMarcasAux", listaMarcas);
 
         List<Producto> listaProductos = this.fachada.buscarTodasProducto();
         session.setAttribute("listaProductosAux", listaProductos);
-
+        session.setAttribute("precioTotal", CargarInformacion.sumaTotal(listaProductos));
+        
         request.getRequestDispatcher("ppal.jsp").forward(request, response);
     }
 
@@ -88,6 +89,14 @@ public class CargarInformacion extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+    }
+
+    public static double sumaTotal(List<Producto> listaProductos) {
+        double total = 0;
+        for (Producto listaProducto : listaProductos) {
+            total += listaProducto.getPrecio();
+        }
+        return total;
     }
 
     /**

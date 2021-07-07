@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="dominio.Producto"%>
 <%@page import="java.util.List"%>
 <%@page import="datos.Fachada"%>
@@ -23,36 +24,23 @@
             </thead>
             <tbody>
                 <tr>
-                    <%
-                        List<Producto> productos = (List<Producto>) session.getAttribute("listaProductosAux");
-                        for (int i = 0; i < productos.size(); i++) {
-                            out.print("<tr>"
-                                    + "<td scope=\"row\">" + productos.get(i).getNumSerie() + "</td>"
-                                    + "<td>" + productos.get(i).getNombre() + "</td>"
-                                    + "<td>" + productos.get(i).getPrecio() + "</td>"
-                                    + "<td>" + productos.get(i).getMarca() + "</td>"
-                                    + "</tr>"
-                            );
-                        }
-                    %>
+                    <c:forEach var="productos" items="${listaProductosAux}">
+                    <tr>
+                        <td>${productos.getNumSerie()}</td>
+                        <td>${productos.getNombre()}</td>
+                        <td>${productos.getPrecio()}</td>
+                        <td>${productos.getMarca()}</td>
+                    </tr>
+                    </c:forEach>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
                     <td colspan='2'>TOTAL</td>
-                    <%  double total = 0;
-                        for (int i = 0; i < productos.size(); i++) {
-                            total += productos.get(i).getPrecio();
-                        }
-                        out.print("<td colspan='2'>" + total + "</td>");
-                    %>
-
+                    <td colspan='2'>${precioTotal}</td>
                 </tr>
             </tfoot>
         </table>
-        <%
-            session.removeAttribute("errorPrecio");
-        %>
         <br><br>
         <a href="ppal.jsp">Registrar producto ---------></a>
     </body>

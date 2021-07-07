@@ -83,25 +83,28 @@ public class RegistrarProducto extends HttpServlet {
         String precio = request.getParameter("txtPrecio");
         String marca = request.getParameter("selMarca");
         String descripcion = request.getParameter("txaDesc");
-        
+
         HttpSession session = request.getSession();
-        
+
         double precioConvertido = Double.parseDouble(precio);
-        if (precioConvertido > 100) {
+
+        Marca marcaConvertida = fachada.buscarNombreMarca(marca);
+
+        Producto productoNuevo = new Producto(numSerie, nombre, descripcion, precioConvertido, marcaConvertida);
+
+        if (precioConvertido > 100 && marcaConvertida.getNombre().equalsIgnoreCase("Sony")) {
             session.setAttribute("errorPrecio", "ERROR: Debe de ingresar un precio menor o igual a $100");
             response.sendRedirect("ppal.jsp");
             return;
         }
-                
-        Marca marcaConvertida = fachada.buscarNombreMarca(marca);
-
-        Producto productoNuevo = new Producto(numSerie, nombre, descripcion, precioConvertido, marcaConvertida);
 
         fachada.guardarProducto(productoNuevo);
 
         List<Producto> listaProductos = this.fachada.buscarTodasProducto();
         session.setAttribute("listaProductosAux", listaProductos);
-
+        session.setAttribute("precioTotal", CargarInformacion.sumaTotal(listaProductos));
+        session.removeAttribute("errorPrecio");
+        
         request.getRequestDispatcher("listaProductos.jsp").forward(request, response);
     }
 
